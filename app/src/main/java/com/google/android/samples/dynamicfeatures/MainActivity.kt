@@ -16,17 +16,16 @@
 
 package com.google.android.samples.dynamicfeatures
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.constraint.Group
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.Group
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
@@ -63,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                       In order to see this, the application has to be uploaded to the Play Store.
                       Then features can be requested until the confirmation path is triggered.
                      */
-                    startIntentSender(state.resolutionIntent().intentSender, null, 0, 0, 0)
+                    startIntentSender(state.resolutionIntent()?.intentSender, null, 0, 0, 0)
                 }
                 SplitInstallSessionStatus.INSTALLED -> {
                     onSuccessfulLoad(name, launch = !multiInstall)
@@ -71,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
                 SplitInstallSessionStatus.INSTALLING -> displayLoadingState(state, "Installing $name")
                 SplitInstallSessionStatus.FAILED -> {
-                    Log.e(TAG, "Error: ${state.errorCode()} for module ${state.moduleNames()}")
+                    toastAndLog("Error: ${state.errorCode()} for module ${state.moduleNames()}")
                 }
             }
         }
@@ -283,7 +282,7 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-fun Context.toastAndLog(text: String) {
+fun MainActivity.toastAndLog(text: String) {
     Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     Log.d(TAG, text)
 }
