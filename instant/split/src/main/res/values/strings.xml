@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright 2018 Google LLC.
   ~
@@ -15,15 +14,7 @@
   ~ limitations under the License.
   -->
 
-<!-- This feature module only contains a single assets file relevant to the Android app. -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="com.google.android.samples.dynamicfeatures.ondemand.assets">
+<resources>
+    <string name="content_text">This is an instant dynamic feature, downloaded using the Split Install API.</string>
+</resources>
 
-    <dist:module
-        dist:onDemand="true"
-        dist:title="@string/module_assets">
-        <dist:fusing dist:include="true" />
-    </dist:module>
-
-</manifest>

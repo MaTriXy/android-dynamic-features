@@ -14,16 +14,23 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
-<!-- This feature module only contains a single assets file relevant to the Android app. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="com.google.android.samples.dynamicfeatures.ondemand.assets">
+    package="com.google.android.samples.instantdynamicfeatures">
 
+    <!-- The dist:instant="true" makes this module instant enabled. Assuming the "app" module is
+        also instant enabled, when this bundle is uploaded to the instant track on the
+        Google Play Developer Console, this module will be included in the instant app. Any non
+        instant enabled modules will be excluded -->
     <dist:module
-        dist:onDemand="true"
-        dist:title="@string/module_assets">
+        dist:instant="true"
+        dist:onDemand="false"
+        dist:title="@string/module_instant_feature_split_install">
         <dist:fusing dist:include="true" />
     </dist:module>
+
+    <application>
+        <activity android:name="com.google.android.samples.instantdynamicfeatures.SplitInstallInstantActivity"></activity>
+    </application>
 
 </manifest>
